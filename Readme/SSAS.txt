@@ -1,0 +1,16 @@
+1. Project's property to setup deployment server's Target(SSAS server)
+2. Data Source connection string set to the OLTp server(DW OLTP),Impersonation Tab set the user to access to ssas server
+3. Data source View add tables to DSV,  open DSV,DimCustomer Right click,
+   I.Add Named Calculation-> FullName-> SQL statements
+         right click on full name to explore Data
+
+         DimCustomer, Customer Name-> property: ValueColumn:DimCustomer.CustomerKey (WChar)
+                                          NameColumn: DimCustomer.FullName (WChar)
+   II.Add Named Query(Add joined tables to a single table)
+4. Cubes set mesures and dimesions
+5. Demension Date, DAteKey -> set NameColumn(use dateKey to point to The Name of date(FullDateAlternateKey))
+6. Generate Dimension from Fact Table,Dimensions->Add new Dimension, from existing table-> Fact Table.
+7. Hierarchy, Set Value & Name column for Category, SubCategory, Product, Set Attributes Relationship: Product->Sub,
+   ->Cat , Set Hierarchy : Cat->Sub->Prd,set the visibility of the other attributes to false.
+8.Cube Designer->Calculations Tab Add Calculated field
+

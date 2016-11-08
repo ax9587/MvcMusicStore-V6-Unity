@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MvcMusicStore_V5.Models.Album>
+
+@{
+    ViewBag.Title = "Albums";
+}
+
+<h2>Albums</h2>
+
+
+<div id="MoviePanel" class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="list-group">
+                    @Html.DisplayFor(modelItem => item.Title)
+                    <div class="list-group-item">
+                        <div class="list-group-item-info">
+                            @Html.DisplayNameFor(model => model.Genre.Name)
+                        </div>
+                        <div class="list-group-item-text">
+                            @Html.DisplayFor(modelItem => item.Genre.Name)
+                        </div>
+                        <div class="list-group-item-info">
+                            @Html.DisplayNameFor(model => model.Artist.Name)
+                        </div>
+                        <div class="list-group-item-text">
+                            @Html.DisplayFor(modelItem => item.Artist.Name)
+                        </div>
+                        <div class="list-group-item-info">
+                            @Html.DisplayNameFor(model => model.Price)
+                        </div>
+                        <div class="list-group-item-text">
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </div>
+                        @*<div class="list-group-item-info">
+                                @session.DateText
+                            </div>*@
+                        @*<div class="list-group-item-info small hidden-xs">
+                                @Html.Partial("_TagsLinks", session)
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MvcMusicStore_V5.Models.Album>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@Url.Action("Details","Albums",new { id = item.AlbumId })">
+                <img alt="@item.Title" src="@item.AlbumArtUrl" />
+                <span>@item.Title</span>
+            </a>
+        </li>
+    }
+</ul>

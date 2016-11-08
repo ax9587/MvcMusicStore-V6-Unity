@@ -1,0 +1,84 @@
+﻿@model MvcMusicStore_V5.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").click(function () {
+            //alert("hello world");
+            var recordToDelete = $(this).attr("data-id");
+            if(recordToDelete!=''){
+                $.post("/ShoppingCart/RemoveFromCart",{"id":recordToDelete}, 
+                    function (data) {
+                        if (data.ItemCount == 0) {
+                            $('#row-' + recordToDelete).fadeOut('slow');
+                        } else {
+                            $('#row-' + recordToDelete).text(data.ItemCount);
+                        }
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                    });
+            }
+
+            });
+
+    });
+</script>
+<div>
+    @*@Html.ActionLink("CheckOut>>", "AddressAndPayment", "CheckOut")*@
+    <a href="@Url.Action("AddressAndPayment", "CheckOut")" class="btn btn-primary">CheckOut>></a>
+</div>
+<h2><em>Review</em> your cart:</h2>
+
+
+<div id="update-message">
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Album Name
+        </th>
+        <th>
+            Price (each)
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.CartItems)
+{
+    
+    <tr id="row-@item.RecordId">
+        <td>
+            @Html.DisplayFor(modelItem => item.Album.Title)
+        </td>
+        <td>
+            @item.Album.Price
+        </td>
+        <td>
+            @item.Count
+        </td>
+        <td >
+            <a href="#" class="RemoveLink" data-id="@item.RecordId">Remove from cart</a>
+        </td>
+    </tr>
+      
+    }
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th id="cart-total">
+            @Html.DisplayFor(model => model.Total)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>

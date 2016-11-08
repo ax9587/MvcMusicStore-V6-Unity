@@ -1,0 +1,21 @@
+Moq
+
+Don't use moq for static method.
+
+Use Unit of work & repository & XML resource
+
+SELECT TOP (2) Albums.AlbumId, Albums.GenreId, Albums.ArtistId, Albums.Title, Albums.Price,
+              Albums.AlbumArtUrl, 
+			   (SELECT     [Genres].GenreId,[Genres].Name, [Genres].Description  FOR XML PATH(''), 
+               TYPE, ELEMENTS) 
+                as genre,
+			  [Artists].ArtistId , [Artists].Name
+			  
+			  
+
+			 
+FROM     Albums INNER JOIN
+         Artists ON Albums.ArtistId = Artists.ArtistId INNER JOIN
+         Genres ON Albums.GenreId = Genres.GenreId
+
+for xml auto,root('ArrayOfAlbum'),elements

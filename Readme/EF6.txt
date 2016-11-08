@@ -1,0 +1,10 @@
+EF6
+
+1.enable-migrations
+2.enable-migrations -ContextTypeName IdentityDb -MigrationsDirectory DataContexts\IdentityMigrations ; enable-migrations -ContextTypeName BookDb
+3.add-migration -ConfigurationTypeName Books.Web.DataContexts.BookMigrations.Configuration "InitialCreate"  ---Create Table Structure
+4.Update-database -ConfigurationTypeName Books.Web.DataContexts.BookMigrations.Configuration 
+
+-verbose to show sql statements
+
+add-migration MvcMusicStore_V5.Models.MusicContext

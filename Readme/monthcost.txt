@@ -1,0 +1,7 @@
+superstore - 72.89
+liquior    -119.72
+golf       -68.96
+gas        -120.33
+tt         -498.21
+rest       -188.42
+1068.53 

@@ -1,0 +1,2 @@
+1.connection string
+<add name="AuthContext" connectionString="Data Source=AXPC\SQLEXPRESS;Initial Catalog=AngularJSAuth;User Id=Owin;Password=Abc123!;" providerName="System.Data.SqlClient" />
